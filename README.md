@@ -3,6 +3,10 @@ Hard fork of [Google Test](https://github.com/google/googletest)
 
 Latest version: Release 1.10.x
 
+Build Status:
+
+[![Build status](https://ci.appveyor.com/api/projects/status/mtwmlwukeulhhk7a/branch/master?svg=true)](https://ci.appveyor.com/project/tmiguelf/googletest/branch/master)
+
 ## Welcome to **Google Test**, Google's C++ test framework!
 
 This repository is a merger of the formerly separate GoogleTest and GoogleMock
