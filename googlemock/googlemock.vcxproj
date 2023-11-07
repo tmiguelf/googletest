@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{d093761a-08df-4a74-a0e3-f34db77a2118}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="WSL_Debug|x64">
+      <Configuration>WSL_Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="WSL_Release|x64">
+      <Configuration>WSL_Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='Debug'">
+    <CompilerFlavour>MSVC</CompilerFlavour>
+    <BuildMethod>native</BuildMethod>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='Release'">
+    <CompilerFlavour>MSVC</CompilerFlavour>
+    <BuildMethod>native</BuildMethod>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='WSL_Debug'">
+    <CompilerFlavour>g++</CompilerFlavour>
+    <BuildMethod>WSL</BuildMethod>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="quickMSBuild" Condition="'$(Configuration)'=='WSL_Release'">
+    <CompilerFlavour>g++</CompilerFlavour>
+    <BuildMethod>WSL</BuildMethod>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(SolutionDir)locations.props" />
+    <Import Project="$(quickMSBuildPath)default.cpp.props" />
+    <Import Project="$(googletestPath)googletest.import.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="googlemock.import.props" />
+    <None Include="googlemock.include.props" />
+    <None Include="include\gmock\gmock-generated-actions.h.pump" />
+    <None Include="include\gmock\internal\custom\gmock-generated-actions.h.pump" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gmock-cardinalities.cc" />
+    <ClCompile Include="src\gmock-internal-utils.cc" />
+    <ClCompile Include="src\gmock-matchers.cc" />
+    <ClCompile Include="src\gmock-spec-builders.cc" />
+    <ClCompile Include="src\gmock.cc" />
+    <ClCompile Include="src\gmock_main.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\gmock\gmock-actions.h" />
+    <ClInclude Include="include\gmock\gmock-cardinalities.h" />
+    <ClInclude Include="include\gmock\gmock-function-mocker.h" />
+    <ClInclude Include="include\gmock\gmock-generated-actions.h" />
+    <ClInclude Include="include\gmock\gmock-matchers.h" />
+    <ClInclude Include="include\gmock\gmock-more-matchers.h" />
+    <ClInclude Include="include\gmock\gmock-nice-strict.h" />
+    <ClInclude Include="include\gmock\gmock-spec-builders.h" />
+    <ClInclude Include="include\gmock\gmock.h" />
+    <ClInclude Include="include\gmock\internal\custom\gmock-generated-actions.h" />
+    <ClInclude Include="include\gmock\internal\custom\gmock-matchers.h" />
+    <ClInclude Include="include\gmock\internal\custom\gmock-port.h" />
+    <ClInclude Include="include\gmock\internal\gmock-internal-utils.h" />
+    <ClInclude Include="include\gmock\internal\gmock-port.h" />
+    <ClInclude Include="include\gmock\internal\gmock-pp.h" />
+  </ItemGroup>
+  <Import Project="$(quickMSBuildPath)default.cpp.targets" />
+</Project>
